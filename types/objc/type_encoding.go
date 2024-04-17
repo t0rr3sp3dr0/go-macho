@@ -183,7 +183,7 @@ func getPropertyType(attrs string) (typ string) {
 			if strings.HasPrefix(typ, "<") {
 				typ = "id " + strings.ReplaceAll(typ, "><", ", ")
 			}
-			typ += " *"
+			typ = strings.ReplaceAll(typ, "<", " <") + " *"
 		} else {
 			typ = decodeType(attr) + " "
 		}
@@ -251,7 +251,7 @@ func getIVarType(ivType string) string {
 		if strings.HasPrefix(ivType, "<") {
 			ivType = "id " + strings.ReplaceAll(ivType, "><", ", ")
 		}
-		return ivType + " *"
+		return strings.ReplaceAll(ivType, "<", " <") + " *"
 	}
 	return decodeType(ivType) + " "
 }
